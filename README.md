@@ -2,6 +2,10 @@
 
 A minimal Qwen3 GUI agent driver. It exposes the `computer_use` tool on a vLLM (OpenAI compatible) endpoint and directly controls the local mouse, keyboard, and screenshot capture via `pyautogui`/`mss`.
 
+## Demo
+
+![GitHub issue resolution demo](misc/github-issue-resolve-refined.gif)
+
 ## Requirements
 - Python 3.10+
 - GUI control permission (X11/Wayland/VNC, physical or virtual display)
@@ -9,7 +13,8 @@ A minimal Qwen3 GUI agent driver. It exposes the `computer_use` tool on a vLLM (
 
 ## Installation
 ```bash
-cd /home/robin/qwen3_computer_use
+git clone https://github.com/SeungyounShin/qwen3_computer_use.git
+cd ./qwen3_computer_use
 uv sync
 ```
 
