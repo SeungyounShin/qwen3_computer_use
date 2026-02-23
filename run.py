@@ -9,10 +9,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from dotenv import load_dotenv
 import mss
 from PIL import Image, ImageDraw
 from openai import OpenAI
 from tqdm.auto import tqdm
+
+load_dotenv()
 
 COMPUTER_USE_TOOL_SPEC: Dict[str, Any] = {
     "type": "function",
@@ -573,13 +576,13 @@ class ComputerUseAgent:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Minimal computer-use agent driver.")
-    parser.add_argument("--model", type=str, default="Qwen/Qwen3-VL-30B-A3B-Instruct")
+    parser.add_argument("--model", type=str, default=os.getenv("MODEL_NAME", "Qwen/Qwen3-VL-30B-A3B-Instruct"))
     parser.add_argument("--task", type=str, required=False, default="Open a browser and search for the weather in Seoul")
-    parser.add_argument("--api-key", type=str, default="EMPTY")
-    parser.add_argument("--base-url", type=str, default="http://localhost:8000/v1")
-    parser.add_argument("--timeout", type=float, default=600.0)
-    parser.add_argument("--max-turns", type=int, default=200)
-    parser.add_argument("--temperature", type=float, default=0.0)
+    parser.add_argument("--api-key", type=str, default=os.getenv("API_KEY", "EMPTY"))
+    parser.add_argument("--base-url", type=str, default=os.getenv("API_BASE_URL", "http://localhost:8000/v1"))
+    parser.add_argument("--timeout", type=float, default=float(os.getenv("API_TIMEOUT", "600.0")))
+    parser.add_argument("--max-turns", type=int, default=int(os.getenv("MAX_TURNS", "200")))
+    parser.add_argument("--temperature", type=float, default=float(os.getenv("TEMPERATURE", "0.0")))
     parser.add_argument("--screenshot-dir", type=Path, default=Path("./screenshots"))
     parser.add_argument("--monitor-index", type=int, default=1)
     parser.add_argument("--mouse-move-duration", type=float, default=0.0)
@@ -587,7 +590,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--history-window",
         type=int,
-        default=60,
+        default=int(os.getenv("HISTORY_WINDOW", "12")),
         help="Number of assistant/tool turn pairs to keep in context.",
     )
     parser.add_argument(

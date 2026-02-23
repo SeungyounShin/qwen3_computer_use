@@ -4,7 +4,10 @@ A minimal Qwen3 GUI agent driver. It exposes the `computer_use` tool on a vLLM (
 
 ## Demo
 
-![GitHub issue resolution demo](misc/github-issue-resolve-refined.gif)
+| Model | Task | Demo |
+|-------|------|------|
+| Qwen3-VL-30B-A3B-Instruct | GitHub issue resolution | ![GitHub issue resolution demo](misc/github-issue-resolve-refined.gif) |
+| Qwen3.5-397B-A17B-FP8 | Weather search in Seoul | ![Weather search demo](misc/weather-search-qwen3.5-397B.gif) |
 
 ## Requirements
 - Python 3.10+

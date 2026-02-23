@@ -1,3 +1,4 @@
 .venv/
 qwen3_computer_use.egg-info/
+.env
 
